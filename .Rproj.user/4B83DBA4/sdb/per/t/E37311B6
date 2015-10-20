@@ -1,0 +1,17 @@
+{
+    "contents" : "# server.R\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(leaflet)\nlibrary(tigris)\nlibrary(maptools)\n\n\ncongressData <- read.csv(\"data/congress_cookie_census.csv\", \n                         colClasses = c(\"character\", \"character\", \"character\", \"character\", \"integer\", \"numeric\", \"character\", \"integer\", \"numeric\"))\n\ncd113 <- readShapeSpatial(\"data/cb_2013_us_cd113_5m/cb_2013_us_cd113_5m.shp\")\n\nshinyServer(function(input, output, session) {\n  \n  dataSubset <- reactive({\n    filter(congressData, attribute_group == input$demoSelect)\n    \n  })\n  \n  observe({\n    \n    updateSelectInput(session, \"attributeSelect\",\n                      label = \"Choose Attribute to display\", \n                      choices = c(sort(unique(as.character(dataSubset()$attribute_value)))),\n                      selected = unique(as.character(dataSubset()$attribute_value))[1])\n  })\n  \n  dataMerge <- reactive({\n    \n    dataToMerge <- filter(dataSubset(), attribute_value == input$attributeSelect)\n    \n    dataMerged <- geo_join(cd113, dataToMerge, \"GEOID\", \"GEOID\")\n    \n    \n    return(dataMerged)\n    \n  })  \n  \n  output$myPlot <- renderLeaflet({\n    pal <- colorNumeric(\"Greens\", NULL, n = 6)\n    myTitle <- paste(input$demoSelect, \"-\", input$attributeSelect)\n    \n    popup <- paste(\"<b>\", dataMerge()$state, \" \",\n                   dataMerge()$district, \"</b><br/>\", \n                   myTitle, \"<br/>\", \n                   \"Cookie: \", round(dataMerge()$cookie, 2), \"<br/>\",\n                   \"Census: \", round(dataMerge()$census, 2), sep=\"\")\n    \n    \n    \n    myMap <- leaflet() %>% \n      addPolygons(data = dataMerge(), color = \"black\", \n                  fillColor = ~pal(dataMerge()$cookie), fillOpacity = .7, \n                  weight = 1, popup = popup) %>% \n      addLegend(pal = pal, values = dataMerge()$cookie, position=\"bottomright\", title=myTitle) %>% \n      addProviderTiles(\"CartoDB.Positron\") %>%\n      setView(lng = -98.35, lat = 39.50, zoom = 5)\n    \n    return(myMap)\n  })\n  \n})",
+    "created" : 1445104361056.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2100503844",
+    "id" : "E37311B6",
+    "lastKnownWriteTime" : 1441311959,
+    "path" : "~/GeoAnalysis/Congress/server.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,18 @@
+{
+    "contents" : "library(dplyr)\nlibrary(leaflet)\n\n\nshinyServer(function(input, output, session) {\n  \n\n\n  \n  output$usgs.plot <- renderLeaflet({\n\n    if(input$colorSelect == \"All Same Color\") {\n      \n      metals$color <- \"Station Location\"\n      colorData <- metals$color\n      pal <- colorFactor(c(\"cornflowerblue\"), colorData)\n      myPopup <- paste(metals$Location.Name)\n    }\n    \n    else if (input$colorSelect == \"Region\") {\n      colorData <- metals[[input$colorSelect]]\n      pal <- colorFactor(\"Spectral\", colorData)\n      myPopup <- paste(metals$Location.Name, \"<BR>\", input$colorSelect, metals[, input$colorSelect])\n    }\n    \n    else{\n      colorData <- metals[[input$colorSelect]]\n      pal <- colorBin(\"Spectral\", colorData, 7, pretty = FALSE)\n      \n      myPopup <- paste(metals$Location.Name, \"<BR>\", input$colorSelect, metals[, input$colorSelect])\n    }\n    \n    if(input$sizeSelect == \"All Same Size\") {\n      radius = 1000\n    }\n    else {\n      radius <- metals[[input$sizeSelect]] / max(metals[[input$sizeSelect]]) * 10000\n      \n    }\n  \n    \n    leaflet(metals) %>% \n      addTiles() %>% \n      addCircles(lng = ~Long,\n                 lat = ~Lat,\n                 popup = myPopup,\n                 radius = radius, \n                 color = pal(colorData), \n                 fillOpacity = 0.4) %>% \n      addLegend(\"bottomright\", pal = pal, values = colorData, title = paste(input$colorSelect, \"(mg/kg, dry weight)\"))\n  })\n  \n  \n # observe({\n    \n#    colorData <- metals[[input$colorSelect]]\n#    pal <- colorBin(\"Spectral\", colorData, 7, pretty = FALSE)\n    \n    #myTitle <- paste(input$colorSelect, \"-\", input$attributeSelect)\n    \n    #myPopup <- paste(metals$Location.Name, \"<BR>\", input$colorSelect, metals[, input$colorSelect])\n    \n#    leafletProxy(metals) %>% \n#      clearShapes()\n#      addTiles() %>% \n#      addCircles(lng = ~Long,\n#                 lat = ~Lat,\n#                 radius = 1000, \n#                 color = pal(colorData), \n#                 fillOpacity = 0.4) %>% \n#      addLegend(\"bottomright\", pal = pal, values = colorData, title = paste(input$colorSelect, \"(mg/kg, dry weight)\"))\n    \n    \n#  })\n})",
+    "created" : 1445104343561.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "108607852",
+    "id" : "A3663220",
+    "lastKnownWriteTime" : 1445107646,
+    "path" : "~/USGS/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

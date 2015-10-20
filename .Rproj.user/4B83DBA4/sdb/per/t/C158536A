@@ -1,0 +1,18 @@
+{
+    "contents" : "library(dplyr)\n\n# read tidy data\nstations <- read.csv(\"data/station_locations.csv\")\nspills <- read.csv(\"data/sortedspills_ny2.csv\")\nmetals <- read.csv(\"data/hurricane_metals.csv\")\n\nstations <- dplyr::rename(stations, lat = Latitude..decimal.degrees., long = Longitude..decimal.degrees.)\n\n# get list for drop downs\nmetals.list <- names(metals)[9:31]",
+    "created" : 1445103484496.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2424838242",
+    "id" : "C158536A",
+    "lastKnownWriteTime" : 1445103700,
+    "path" : "~/USGS/global.R",
+    "project_path" : "global.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

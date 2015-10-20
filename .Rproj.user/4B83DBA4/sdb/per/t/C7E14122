@@ -1,0 +1,17 @@
+{
+    "contents" : "# ui.R\n\nlibrary(shiny)\nlibrary(leaflet)\ncongressData <- read.csv(\"data/congress_cookie_census.csv\")\n\n\nshinyUI(navbarPage(\"Congress\", id=\"nav\",\n  \n  div(class=\"outer\",\n      \n      tags$head(\n        # Include our custom CSS\n        includeCSS(\"styles.css\"),\n        includeScript(\"gomap.js\")\n      ),\n      \n      leafletOutput(\"myPlot\", width=\"100%\", height=1000),\n      \n      # Shiny versions prior to 0.11 should use class=\"modal\" instead.\n      absolutePanel(id = \"controls\", class = \"panel panel-default\", fixed = TRUE,\n                    draggable = TRUE, top = 60, left = \"auto\", right = 20, bottom = \"auto\",\n                    width = 330, height = \"auto\",\n                    \n                    h2(\"Congress Explorer\"),\n                    \n                    selectInput(\"demoSelect\",\n                                label = \"Select Attribute Group:\",\n                                choices = sort(as.character(unique(congressData$attribute_group))),\n                                selected = \"Business Score\"),\n                    \n                    selectInput(\"attributeSelect\",\n                                label = \"Select Attribute Value:\",\n                                choices = c(\"All\"),\n                                selected = \"All\")\n      )\n      )\n  )\n)\n",
+    "created" : 1445103770472.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "21960151",
+    "id" : "C7E14122",
+    "lastKnownWriteTime" : 1441310754,
+    "path" : "~/GeoAnalysis/Congress/ui.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

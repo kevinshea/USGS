@@ -1,0 +1,9 @@
+{
+    "path" : "~/USGS",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "contents" : "library(leaflet)\nlibrary(dplyr)\n\n# read tidy data\nstations <- read.csv(\"data/station_locations.csv\")\nspills <- read.csv(\"data/sortedspills_ny2.csv\")\nmetals <- read.csv(\"data/hurricane_metals.csv\")\n\nstations <- dplyr::rename(stations, lat = Latitude..decimal.degrees., long = Longitude..decimal.degrees.)\n#stations <- dplyr::rename(stations, lat = Latitude, long = Longitude) \n\nleaflet(stations) %>% addTiles() %>% addMarkers(popup = ~Site.code)\n\ncolorData <- metals[[\"Aluminum\"]]\npal <- colorBin(\"Spectral\", colorData, 7, pretty = FALSE)\nmyPopup <- paste(metals$Location.Name, \"<BR>\", \"Aluminum:\", metals$Aluminum)\nleaflet(metals) %>% addTiles() %>% addCircles(popup = ~Location.Name)\n\nleaflet(metals) %>% addTiles() %>% addCircles(popup = myPopup, radius = 1000, color = pal(colorData), fillOpacity = 0.4) %>% addLegend(\"bottomright\", pal = pal, values = colorData, title = \"Aluminum (mg/kb)\")\n\nleaflet(Andrew) %>% \n  addTiles() %>% \n  addCircles(~Long, ~Lat, radius = radius, popup = ~Tip, fillColor = pal(colorData), color = pal(colorData), fillOpacity = 0.4) %>% \n  addLegend(\"bottomleft\", pal = pal, values = colorData, title = \"Category\")",
+    "created" : 1445099934304.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "465913937",
+    "id" : "9981615B",
+    "lastKnownWriteTime" : 1445104988,
+    "path" : "~/USGS/usgs.R",
+    "project_path" : "usgs.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

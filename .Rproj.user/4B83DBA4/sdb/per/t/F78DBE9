@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1445116142725.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F78DBE9",
+    "lastKnownWriteTime" : 7011605692497750387,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "m19006q23x",
+        "caption" : "spills",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=spills&cache_key=m19006q23x",
+        "displayedObservations" : 157,
+        "environment" : "",
+        "object" : "spills",
+        "totalObservations" : 157,
+        "variables" : 17
+    },
+    "relative_order" : 13,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,17 @@
+{
+    "contents" : "library(dplyr)\n\nallzips <- readRDS(\"data/superzip.rds\")\nallzips$latitude <- jitter(allzips$latitude)\nallzips$longitude <- jitter(allzips$longitude)\nallzips$college <- allzips$college * 100\nallzips$zipcode <- formatC(allzips$zipcode, width=5, format=\"d\", flag=\"0\")\nrow.names(allzips) <- allzips$zipcode\n\ncleantable <- allzips %>%\n  select(\n    City = city.x,\n    State = state.x,\n    Zipcode = zipcode,\n    Rank = rank,\n    Score = centile,\n    Superzip = superzip,\n    Population = adultpop,\n    College = college,\n    Income = income,\n    Lat = latitude,\n    Long = longitude\n  )\n",
+    "created" : 1445101742473.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4246370820",
+    "id" : "DC964E78",
+    "lastKnownWriteTime" : 1445101719,
+    "path" : "~/Shiny/063-superzip-example/global.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1445116341088.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "78675F5B",
+    "lastKnownWriteTime" : 7011605692497750387,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "jfg49w3win",
+        "caption" : "wastewater",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=wastewater&cache_key=jfg49w3win",
+        "displayedObservations" : 93,
+        "environment" : "",
+        "object" : "wastewater",
+        "totalObservations" : 93,
+        "variables" : 119
+    },
+    "relative_order" : 13,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}
