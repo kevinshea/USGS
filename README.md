@@ -10,3 +10,7 @@ Code for running Shiny App are in:
   * global.R
 
 Data sources are located under the /data directory.
+
+Heavily indebted to http://shiny.rstudio.com/gallery/superzip-example.html
+
+For more information on Shiny http://shiny.rstudio.com/
