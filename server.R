@@ -1,5 +1,6 @@
 library(dplyr)
 library(leaflet)
+library(shiny)
 
 
 shinyServer(function(input, output, session) {
